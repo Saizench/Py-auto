@@ -1,0 +1,105 @@
+import speech_recognition as sr 
+import pyttsx3 
+from pywinauto import Application 
+ import os 
+ import random 
+ import webbrowser 
+  
+ list_agreement = ['sure', 'of course', 'no problem', 'one second', 'ok'] 
+ random_word = random.choice(list_agreement) 
+ engine = pyttsx3.init() 
+  
+  
+ def helper_voice(): 
+     #settings for voice 
+     rate = engine.getProperty('rate') 
+     volume = engine.getProperty('volume') 
+     voices = engine.getProperty('voices') 
+     engine.setProperty('rate', 200) 
+     engine.setProperty('volume', 0.5) 
+     engine.setProperty('voice', voices[1].id) 
+     engine.say("Hello") 
+     engine.runAndWait() 
+  
+  
+ def speech_detection(): 
+     #create recognizer and app 
+     recognizer = sr.Recognizer() 
+     app = Application(backend='uia') 
+     while True: 
+         try: 
+             with sr.Microphone() as mic: 
+                 #cathing speach from mic 
+                 recognizer.adjust_for_ambient_noise(mic, duration=0.2) 
+                 audio = recognizer.listen(mic) 
+                 text_sr = recognizer.recognize_google(audio) 
+                 text_sr = text_sr.lower() 
+                 recognizer.adjust_for_ambient_noise(mic) 
+                 print(text_sr) 
+                 #different options for phoenix 
+                 if text_sr == 'phoenix': 
+                     helper_voice() 
+                 elif text_sr == 'close yourself': 
+                     engine.say('Bye') 
+                     engine.runAndWait() 
+                     time.sleep(1) 
+                     os._exit(0) 
+                 elif text_sr == 'open chess': 
+                     url = 'https://www.chess.com/home' 
+                     engine.say(random_word) 
+                     engine.runAndWait() 
+                     webbrowser.open(url, new=0, autoraise=True) 
+                 elif text_sr == 'open gpt': 
+                     url = 'https://chat.openai.com/' 
+                     engine.say(random_word) 
+                     engine.runAndWait() 
+                     webbrowser.open(url, new=0, autoraise=True) 
+                 elif text_sr == 'open code': 
+                     engine.say(random_word) 
+                     engine.runAndWait() 
+                     app.start(r'D:\Microsoft VS Code\Code.exe') 
+                 elif text_sr == 'open unity': 
+                     engine.say(random_word) 
+                     engine.runAndWait() 
+                     app.start(r"C:\Program Files\Unity Hub\Unity Hub.exe") 
+                 elif text_sr == 'open vs': 
+                     engine.say(random_word) 
+                     engine.runAndWait() 
+                     app.start(r"D:\vstudio\ide visual studio\Common7\IDE\devenv.exe") 
+                 elif text_sr == 'generate random number': 
+                     try: 
+                         engine.say(random_word) 
+                         engine.runAndWait() 
+                         engine.say('what is the maximum number') 
+                         engine.runAndWait() 
+                         user_max_numb = int(input('enter the maximum number:')) 
+                         engine.say('and smallest number') 
+                         engine.runAndWait() 
+                         user_min_numb = int(input('enter the smallest number:')) 
+                         a = random.randint(user_min_numb, user_max_numb) 
+                         print(a) 
+                         engine.say(f'random number is {a}') 
+                         engine.runAndWait() 
+                     except ValueError: 
+                         engine.say('Invalid number, please try again') 
+                         engine.runAndWait() 
+                         continue 
+                 elif text_sr == 'open git': 
+                     url = 'https://github.com/' 
+                     engine.say(random_word) 
+                     engine.runAndWait() 
+                     webbrowser.open(url,  new=0, autoraise=True) 
+                 elif text_sr == 'parrot': 
+                     os.system('start curl ascii.live/parrot') 
+                 elif text_sr == 'open youtube': 
+                     url = 'https://www.youtube.com/' 
+                     engine.say(random_word) 
+                     engine.runAndWait() 
+                     webbrowser.open(url, new=0, autoraise=True) 
+                     #if speach isn't recognised 
+         except sr.UnknownValueError: 
+             recognizer = sr.Recognizer() 
+             continue 
+  
+  
+ speech_detection()
