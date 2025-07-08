@@ -1,9 +1,9 @@
 import speech_recognition as sr 
 import pyttsx3 
 from pywinauto import Application 
- import os 
- import random 
- import webbrowser 
+import os 
+import random 
+import webbrowser 
   
  list_agreement = ['sure', 'of course', 'no problem', 'one second', 'ok'] 
  random_word = random.choice(list_agreement) 
@@ -37,12 +37,12 @@ from pywinauto import Application
                  recognizer.adjust_for_ambient_noise(mic) 
                  print(text_sr) 
                  #different options for phoenix 
-                 if text_sr == 'phoenix': 
+                 if text_sr == 'hello': 
                      helper_voice() 
-                 elif text_sr == 'close yourself': 
+                     engine.say('hi') 
+                 elif text_sr == 'bye': 
                      engine.say('Bye') 
-                     engine.runAndWait() 
-                     time.sleep(1) 
+                     engine.runAndWait()
                      os._exit(0) 
                  elif text_sr == 'open chess': 
                      url = 'https://www.chess.com/home' 
