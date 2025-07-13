@@ -9,7 +9,7 @@ import webbrowser
  random_word = random.choice(list_agreement) 
  engine = pyttsx3.init() 
   
-  
+  //dont forget to make changes here
  def helper_voice(): 
      #settings for voice 
      rate = engine.getProperty('rate') 
