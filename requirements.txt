@@ -1,0 +1,4 @@
+pyttsx3==2.99
+pywinauto==0.6.9
+speechrecognition==3.14.3
+webbrowser==3.15.5
