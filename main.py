@@ -5,8 +5,10 @@ import random
 import os
 from pywinauto import Application
 import winreg
+#currently I'm working on optimisation and updating libraries
+#perhaps the imports will even expend in their amounts 
 
-#Configuration
+#Configuration, change the example paths to your needs
 VOICE_RESPONSES = ['sure', 'of course', 'no problem', 'one second', 'ok']
 
 APP_PATHS = {
@@ -30,6 +32,7 @@ class Assistant:
         self.app = Application(backend='uia')
         self.set_voice()
 
+#customise the voice
     def set_voice(self):
         voices = self.engine.getProperty('voices')
         self.engine.setProperty('voice', voices[1].id)
@@ -71,6 +74,9 @@ def command(name):
         COMMANDS[name] = func
         return func
     return decorator
+    
+#block with commands. command("something") 
+#means you can say it in microphone and the assistant will do it
 
 @command("hello")
 def say_hello(assistant):
