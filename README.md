@@ -1,4 +1,4 @@
-##UA version
+### UA version
 Простий голосовий асистент, створений на Python з використанням бібліотек `speech_recognition` та `pyttsx3' для автоматизації і допомоги з роботою
 
 ## Можливості
@@ -12,7 +12,7 @@
 1. Встановіть: `pip install -r requirements.txt`
 2. Запустіть `main.py`
 
-##EN version
+### EN version
 A simple voice assistant created in Python using the `speech_recognition` and `pyttsx3` libraries to automate and help with work
 
 ## Features
